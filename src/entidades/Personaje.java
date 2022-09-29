@@ -38,14 +38,4 @@ public class Personaje extends Enfrentable {
         return this.atributos.put(k, a) != null;
     }
 
-    @Override
-    public String toString() {
-        String retorno = super.toString() + "\n";
-        Iterator it = atributos.keySet().iterator();
-        while(it.hasNext()){
-            String key = (String) it.next();
-            retorno += "Clave: " + key + " -> Valor: " + getValorAtributo(key) + "\n";
-        }
-        return retorno;
-    }
 }
