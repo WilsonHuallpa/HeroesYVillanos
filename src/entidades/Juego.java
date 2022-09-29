@@ -20,15 +20,19 @@ public final class Juego{
      * @param c
      * @return lista de Enfrentable
      * */
-    public List<Enfrentable> getQuienesVencen(Enfrentable e, Comparator c){
-        List<Enfrentable> list = new ArrayList<>();
+    public List<Enfrentable> getQuienesVencen(Enfrentable e, Comparator<Enfrentable> c){
+        return enfrentables.stream()
+                .filter(preventable -> c.compare(preventable,e) == 1)
+                .collect(Collectors.toList());
+
+       /* List<Enfrentable> list = new ArrayList<>();
         for (Enfrentable enfrentable: enfrentables) {
             int value = c.compare(enfrentable,e);
             if ( value == 1){
                 list.add(enfrentable);
             }
         }
-        return list;
+        return list;*/
     }
     /**Metodo decide quien es el vencedor de una disputa acorde a un criterio.
      * @param  e1
@@ -47,14 +51,15 @@ public final class Juego{
      * @param c
      * @return lista de Personajes.
      * */
-    public List<Personaje> ordernarPersonajes(Comparator c){
-        //List<Personaje> listadoOrdenado = enfrentables.stream().sorted(Comparator.comparing(c)).collect(Collectors.toList());
+    public List<Personaje> ordernarPersonajes(Comparator<Enfrentable> c){
+
         List<Personaje> lista = new ArrayList<>();
         for (Enfrentable enfrentable: enfrentables) {
             lista.addAll(enfrentable.ordenar(c));
         }
         lista.sort(c);
         return lista;
+       // return enfrentables.stream().map(Enfrentable::getPersonajes).distinct().sorted(c).collect(Collectors.toList())
     }
 
 }

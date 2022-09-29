@@ -57,21 +57,24 @@ public class Main {
         List<Enfrentable> justicieros = new ArrayList<>();
         justicieros.add(p3);
         justicieros.add(p2);
+        justicieros.add(p1);
         Liga ligaDeLaJusticia = new Liga("wilson", "Liga De La Justicia", justicieros);
 
-        Juego juego = new Juego();
+        //System.out.println(ligaDeLaJusticia.getValorAtributo("fuerza"));
+
+       /* Juego juego = new Juego();
         juego.addEnfretable(p1);
         juego.addEnfretable(p3);
         juego.addEnfretable(ligaDeLaJusticia);
-
+*/
         //Enfrentable ganador = juego.enfrentar(p1,ligaDeLaJusticia,compuesto);
 
         //retorna una cadena vacia en caso de ser empate.
 
         //List<Enfrentable> ganandores = juego.getQuienesVencen(p2, simple);
 
-        List<Personaje> ordenarliata = juego.ordernarPersonajes(simple1);
-        System.out.println(ordenarliata);
+//        List<Personaje> ordenarliata = juego.ordernarPersonajes(simple1);
+//        System.out.println(ordenarliata);
 
 
 

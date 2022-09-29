@@ -16,41 +16,40 @@ public class Liga extends Enfrentable {
         super(nombre, nombreFantasia);
         this.integrantes = new ArrayList<>();
     }
-    /*Que un liga pertenesca a una liga mas grande.
-     * Poder agregar tanto personaje como liga.*/
+
+    /**Metodo addIntegrantes agrega un objeto tipo Enfrentable.
+     * @param e objeto a gregar.
+     * @return true si se agrego, false si el objeto es nulo.
+     * */
     public boolean addIntegrante(Enfrentable e){
-        if (e != null){
-            if (e instanceof Personaje){
-                return integrantes.add(e);
-            }else if (e instanceof Liga){
-                for (Enfrentable integrante: ((Liga) e).integrantes) {
-                    integrantes.add(integrante);
-                }
-                return true;
-            }
-        }
-        return false;
+        return (e != null) ? integrantes.add(e) : false;
     }
 
-    /* Recore un lista de enfrentable.*/
+    /**Metodo getValorAtributo obtiene el valor del atributo pasado por parametro.
+     * @param key nombre del atributo
+     * @return Un promedio de los valores del atributo especifico de cada integrantes.
+     * */
     @Override
     public float getValorAtributo(String key) {
-        float sum = 0;
-        Integer size = integrantes.size();
-        for (Enfrentable e: integrantes) {
-            sum += e.getValorAtributo(key);
-        }
-        return sum / size ;
+         return  (float) integrantes.stream()
+                    .mapToDouble(a -> a.getValorAtributo(key))
+                    .average().orElse(0);
+
     }
-    /*Aplicar funcionalidad */
-    /* Podemos rertornar una exepcion de lista null.*/
+    /**Metodo getPersonaje
+     * @return Listado de personajes que se encuentran en la liga.
+     * */
     @Override
     protected List<Personaje> getPersonajes() {
         List<Personaje> listaPersonaje = null;
         if (integrantes.size() > 0){
             listaPersonaje = new ArrayList<>();
             for (Enfrentable e: integrantes) {
-                if (e instanceof Personaje){
+                if (e instanceof Liga){
+                    for (Enfrentable personaje: integrantes) {
+                        listaPersonaje.add((Personaje)personaje);
+                    }
+                }else{
                     listaPersonaje.add((Personaje)e);
                 }
             }
