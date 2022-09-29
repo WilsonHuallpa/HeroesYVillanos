@@ -16,7 +16,6 @@ public class AtributoCondicional implements Atributo{
     public float getValor(Enfrentable e) {
         float a1 = e.getValorAtributo(key1);
         float a2 = e.getValorAtributo(key2);
-
         return (a1 > a2)?keyThen.getValor(e): keyElse.getValor(e);
     }
 }

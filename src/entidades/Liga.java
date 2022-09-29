@@ -1,8 +1,10 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Liga extends Enfrentable {
     private List<Enfrentable> integrantes;
@@ -22,7 +24,7 @@ public class Liga extends Enfrentable {
      * @return true si se agrego, false si el objeto es nulo.
      * */
     public boolean addIntegrante(Enfrentable e){
-        return (e != null) ? integrantes.add(e) : false;
+        return (e != null ) ? integrantes.add(e) : false;
     }
 
     /**Metodo getValorAtributo obtiene el valor del atributo pasado por parametro.
@@ -41,20 +43,9 @@ public class Liga extends Enfrentable {
      * */
     @Override
     protected List<Personaje> getPersonajes() {
-        List<Personaje> listaPersonaje = null;
-        if (integrantes.size() > 0){
-            listaPersonaje = new ArrayList<>();
-            for (Enfrentable e: integrantes) {
-                if (e instanceof Liga){
-                    for (Enfrentable personaje: integrantes) {
-                        listaPersonaje.add((Personaje)personaje);
-                    }
-                }else{
-                    listaPersonaje.add((Personaje)e);
-                }
-            }
-        }
-        return listaPersonaje;
+        return integrantes.stream().map(Enfrentable::getPersonajes)
+                                    .flatMap(List::stream)
+                                    .distinct()
+                                    .collect(Collectors.toList());
     }
-
 }

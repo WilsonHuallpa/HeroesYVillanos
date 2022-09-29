@@ -12,13 +12,12 @@ public class Main {
         Personaje p2 = new Personaje("Peter Parker", "spiderman");
         Personaje p3 = new Personaje("Bruce Wayne", "batman");
 
-
         p1.addAtributo("velocidad", new AtributoSImple(100));
         p1.addAtributo("edad", new AtributoSImple(30));
         p1.addAtributo("fuerza", new AtributoSImple(30));
         p1.addAtributo("tecnologia", new AtributoSImple(50));
         p1.addAtributo("superpoder", new AtributoSImple(100));
-        p1.addAtributo("invisibilidad", new AtributoSImple(90));
+        p1.addAtributo("invisibilidad", new AtributoSImple(20));
         p1.addAtributo("Resitencia", new AtributoOperacion("fuerza","velocidad"));
         p1.addAtributo("Camuflaje", new AtributoCondicional("invisibilidad","fuerza",new AtributoSImple(50), new AtributoSImple(100) ));
         p1.addAtributo("Modernidad", new AtributoCondicional("tecnologia","superpoder",new AtributoSImple(30), new AtributoSImple(10)));
@@ -58,28 +57,33 @@ public class Main {
         justicieros.add(p3);
         justicieros.add(p2);
         justicieros.add(p1);
+        justicieros.add(p1);
+
         Liga ligaDeLaJusticia = new Liga("wilson", "Liga De La Justicia", justicieros);
 
-        //System.out.println(ligaDeLaJusticia.getValorAtributo("fuerza"));
+        List<Enfrentable> menores = new ArrayList<>();
+        menores.add(p3);
+        menores.add(p2);
 
-       /* Juego juego = new Juego();
+        Liga ligaMenores = new Liga("ariel", "los vengadores",menores);
+        ligaDeLaJusticia.addIntegrante(ligaMenores);
+
+        Liga noTiene = new Liga("tavo", "lospichis");
+        //System.out.println(ligaDeLaJusticia.getPersonajes());
+
+        Juego juego = new Juego();
         juego.addEnfretable(p1);
         juego.addEnfretable(p3);
         juego.addEnfretable(ligaDeLaJusticia);
-*/
+
         //Enfrentable ganador = juego.enfrentar(p1,ligaDeLaJusticia,compuesto);
 
         //retorna una cadena vacia en caso de ser empate.
 
         //List<Enfrentable> ganandores = juego.getQuienesVencen(p2, simple);
 
-//        List<Personaje> ordenarliata = juego.ordernarPersonajes(simple1);
-//        System.out.println(ordenarliata);
-
-
-
-
-
+        List<Personaje> ordenarliata = juego.ordernarPersonajes(simple1);
+        System.out.println(ordenarliata);
 
     }
 }
