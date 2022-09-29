@@ -40,7 +40,7 @@ public final class Juego{
     }
     /**Metodo de ordenerPersonaje debemos de ver que criterio podemos ordenarlo
      * @param c
-     * @return lista de Personajes.
+     * @return lista de Personajes ordenado..
      * */
     public List<Personaje> ordernarPersonajes(Comparator<Enfrentable> c){
         return enfrentables.stream().map(Enfrentable::getPersonajes)

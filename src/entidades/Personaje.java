@@ -31,8 +31,9 @@ public class Personaje extends Enfrentable {
         return listPersonaje;
     }
     /**Metodo addAtributo
-     * ..Continuar.....
-     *...ver como mejorar mi documentacion.
+     * @param k es nombre del atributo
+     * @param a el valor del atributo
+     * @return true si agrego correctament, false si no.
      * */
     public boolean addAtributo(String k, Atributo a){
         return this.atributos.put(k, a) != null;
